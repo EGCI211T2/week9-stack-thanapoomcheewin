@@ -46,7 +46,8 @@ int main(int argc, char **argv){
             if(!correct) break;
         }
 
-        if(s.pop() != -1)
+        // check remaining open brackets ONLY if no mismatch occurred
+        if(correct && s.pop() != -1)
             correct = false;
 
         if(correct)
