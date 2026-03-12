@@ -23,21 +23,22 @@ int main(int argc, char **argv){
                     break;
 
                 case ']':
+                {
+                    int x = s.pop();
+
+                    if(x == -1 || x != '['){
+                        correct = false;
+                    }
+                    break;
+                }
+
                 case '}':
                 {
                     int x = s.pop();
 
-                    if(x == -1){   // empty stack
+                    if(x == -1 || x != '{'){
                         correct = false;
-                        break;
                     }
-
-                    if(argv[i][j] == ']' && x != '[')
-                        correct = false;
-
-                    if(argv[i][j] == '}' && x != '{')
-                        correct = false;
-
                     break;
                 }
             }
@@ -45,15 +46,14 @@ int main(int argc, char **argv){
             if(!correct) break;
         }
 
-        
         if(s.pop() != -1)
             correct = false;
 
         if(correct)
-            cout<<"argv "<<i<<" correct"<<endl;
+            cout<<"correct"<<endl;
         else
-            cout<<"argv "<<i<<" incorrect"<<endl;
+            cout<<"incorrect"<<endl;
     }
 
-   return 0;
+    return 0;
 }
