@@ -23,18 +23,21 @@ int main(int argc, char **argv){
                     break;
 
                 case ']':
-                {
-                    int x = s.pop();
-                    if(x != '[')
-                        correct = false;
-                    break;
-                }
-
                 case '}':
                 {
                     int x = s.pop();
-                    if(x != '{')
+
+                    if(x == -1){   // empty stack
                         correct = false;
+                        break;
+                    }
+
+                    if(argv[i][j] == ']' && x != '[')
+                        correct = false;
+
+                    if(argv[i][j] == '}' && x != '{')
+                        correct = false;
+
                     break;
                 }
             }
