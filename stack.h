@@ -1,10 +1,11 @@
-
 #ifndef stack_h
 #define stack_h
 #include "node.h"
+
 class Stack {
-	NodePtr top;
-	int size;
+    NodePtr top;
+    int size;
+
 public:
     void push(int);
     int pop();
@@ -12,35 +13,40 @@ public:
     ~Stack();
 };
 
-
 void Stack::push(int x){
-  NodePtr new_node=new NODE(x);
-  if(new_node){
-            // Left missing for exercises…
-   }
- 
-         // Left missing for exercises…
-    
+    NodePtr new_node = new NODE(x);
+
+    if(new_node){
+        new_node->set_next(top);
+        top = new_node;
+        size++;
+    }
 }
 
 int Stack::pop(){
-        NodePtr t=top;
-        int value;
-        value=t->get_value();
-    // Left missing part for exercises
-        delete t;
-        return value;
-	//be careful of the empty stack!!!
+    if(top == NULL){
+        return -1;
     }
 
-Stack::Stack(){
-    //initialize stack
-    
-}
-Stack::~Stack(){
-    //delete all remaning stack (i.e. pop all) 
-    
+    NodePtr t = top;
+    int value = t->get_value();
+
+    top = top->get_next();
+    size--;
+
+    delete t;
+    return value;
 }
 
+Stack::Stack(){
+    top = NULL;
+    size = 0;
+}
+
+Stack::~Stack(){
+    while(top != NULL){
+        pop();
+    }
+}
 
 #endif
