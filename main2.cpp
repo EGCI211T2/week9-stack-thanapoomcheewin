@@ -1,29 +1,56 @@
 #include<iostream>
+#include<cstring>
 using namespace std;
 
 #include "stack.h"
 
 int main(int argc, char **argv){
-    Stack s;
-   
-/*
-  Exercise 2
- printf("Checking the parentheses in argv arguments\n");
 
-   */
+    int i,j;
 
-    /*
-     for(j=0;j<strlen(argv[i]);j++){
-       // Use stack to help with the parentheses
+    for(i=1;i<argc;i++){
 
+        Stack s;
+        bool correct = true;
 
+        for(j=0;j<strlen(argv[i]);j++){
 
+            switch(argv[i][j])
+            {
+                case '[':
+                case '{':
+                    s.push(argv[i][j]);
+                    break;
 
+                case ']':
+                {
+                    int x = s.pop();
+                    if(x != '[')
+                        correct = false;
+                    break;
+                }
 
-  }
+                case '}':
+                {
+                    int x = s.pop();
+                    if(x != '{')
+                        correct = false;
+                    break;
+                }
+            }
 
-  */
+            if(!correct) break;
+        }
 
+        
+        if(s.pop() != -1)
+            correct = false;
+
+        if(correct)
+            cout<<"argv "<<i<<" correct"<<endl;
+        else
+            cout<<"argv "<<i<<" incorrect"<<endl;
+    }
 
    return 0;
 }
