@@ -11,7 +11,8 @@ int main(int argc, char **argv){
     for(i=1;i<argc;i++){
 
         Stack s;
-        bool correct = true;
+        bool mismatch = false;
+        bool tooManyClose = false;
 
         for(j=0;j<strlen(argv[i]);j++){
 
@@ -26,8 +27,12 @@ int main(int argc, char **argv){
                 {
                     int x = s.pop();
 
-                    if(x == -1 || x != '[')
-                        correct = false;
+                    if(x == -1){
+                        tooManyClose = true;
+                    }
+                    else if(x != '['){
+                        mismatch = true;
+                    }
 
                     break;
                 }
@@ -36,24 +41,32 @@ int main(int argc, char **argv){
                 {
                     int x = s.pop();
 
-                    if(x == -1 || x != '{')
-                        correct = false;
+                    if(x == -1){
+                        tooManyClose = true;
+                    }
+                    else if(x != '{'){
+                        mismatch = true;
+                    }
 
                     break;
                 }
             }
 
-            if(!correct) break;
+            if(mismatch || tooManyClose)
+                break;
         }
 
-        // check leftover open brackets
-        if(correct && !s.isEmpty())
-            correct = false;
+        if(tooManyClose)
+            cout<<"too many close"<<endl;
 
-        if(correct)
-            cout<<"correct"<<endl;
+        else if(mismatch)
+            cout<<"mismatch"<<endl;
+
+        else if(!s.isEmpty())
+            cout<<"too many open"<<endl;
+
         else
-            cout<<"incorrect"<<endl;
+            cout<<"correct"<<endl;
     }
 
     return 0;
