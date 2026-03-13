@@ -26,9 +26,9 @@ int main(int argc, char **argv){
                 {
                     int x = s.pop();
 
-                    if(x == -1 || x != '['){
+                    if(x == -1 || x != '[')
                         correct = false;
-                    }
+
                     break;
                 }
 
@@ -36,9 +36,9 @@ int main(int argc, char **argv){
                 {
                     int x = s.pop();
 
-                    if(x == -1 || x != '{'){
+                    if(x == -1 || x != '{')
                         correct = false;
-                    }
+
                     break;
                 }
             }
@@ -46,8 +46,8 @@ int main(int argc, char **argv){
             if(!correct) break;
         }
 
-        // check remaining open brackets ONLY if no mismatch occurred
-        if(correct && s.pop() != -1)
+        // check leftover open brackets
+        if(correct && !s.isEmpty())
             correct = false;
 
         if(correct)

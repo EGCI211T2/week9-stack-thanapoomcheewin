@@ -1,12 +1,9 @@
 #ifndef node_h
 #define node_h
 
-#include <iostream>
-using namespace std;
-
 class NODE{
-    int data;
-    NODE *nextPtr;
+     int data;
+     NODE *nextPtr;
 
 public:
     NODE(int);
@@ -36,7 +33,7 @@ void NODE::set_next(NODE *t){
 }
 
 NODE::~NODE(){
-    // IMPORTANT: no printing here
+    // no printing here
 }
 
 #endif

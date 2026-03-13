@@ -9,6 +9,7 @@ class Stack {
 public:
     void push(int);
     int pop();
+    bool isEmpty();
     Stack();
     ~Stack();
 };
@@ -36,6 +37,10 @@ int Stack::pop(){
 
     delete t;
     return value;
+}
+
+bool Stack::isEmpty(){
+    return top == NULL;
 }
 
 Stack::Stack(){
